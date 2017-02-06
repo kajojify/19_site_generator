@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Энциклопедия devman</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <meta charset="utf-8">  
+    </head>
+    <body>
+        <div class="container context_container" role="main">
+            <div class="page-header">
+                <h1>Энциклопедия</h1>
+            </div>
+            {% for topic in all_topics %}
+                <div class="col-md-4">
+                    <a href="#{{ topic.slug }}"><h4>{{ topic.title }}</h4></a>
+                        <ul class="module_list">
+                            {% for article in all_articles %}
+                                {% if topic.slug == article.topic %}
+                                    <li><a href="{{ article.source|e }}">{{ article.title|e }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                </div>
+        {% endfor %}
+        </div>
+    </body>
+</html>
+
